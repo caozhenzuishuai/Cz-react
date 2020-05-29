@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jsx</title>
+  </head>
+  <body>
+    <div id="root1"></div>
+    <div id="root2"></div>
+
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script>
+      const vDom1 = React.createElement(
+        "h1", // 元素类型
+        { id: "title1", className: "my-class1" }, // 元素属性
+        "I Like You" // 元素里面的内容
+      );
+      ReactDOM.render(vDom1, document.getElementById("root1"));
+    </script>
+    <script src="./js/babel.min.js"></script>
+    <script type="text/babel">
+      const id = "title2";
+      const content = "I Like You";
+      const vDom2 = (
+        <h1 id={id} className="my-class2">
+          {content}
+        </h1>
+      );
+      console.log("vdom2", vDom2);
+      ReactDOM.render(vDom2, document.getElementById("root2"));
+    </script>
+  </body>
+</html>
