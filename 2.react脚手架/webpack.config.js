@@ -105,6 +105,14 @@ module.exports = {
     hot: true,
     quiet: false, // 启用静默模式，在终端不打印多余信息
     clientLogLevel: "none", // 在浏览器控制台不打印多余内容
+    proxy: {
+      // 配置代理服务器
+      "/api": {
+        target: "http://localhost:3000",
+        pathRewrite: { "^/api": "" },
+        changeOrigin: true,
+      },
+    },
   },
   devtool: "cheap-module-source-map", // 开发环境
   resolve: {
