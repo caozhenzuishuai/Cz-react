@@ -21,6 +21,7 @@ module.exports = {
   output: {
     path: undefined, // 输出的目录
     filename: "[name].js", // 输出文件名
+    publicPath: "/",
   },
   // 加载器
   module: {
@@ -113,6 +114,7 @@ module.exports = {
         changeOrigin: true,
       },
     },
+    historyApiFallback: true, // 解决开发的404问题
   },
   devtool: "cheap-module-source-map", // 开发环境
   resolve: {
