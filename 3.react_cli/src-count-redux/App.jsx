@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import store from "./redux/store";
 import { increment, decrement } from "./redux/actions";
 
-@connect(
-  (state) => ({
-    count: state,
-  }),
-  { increment, decrement }
-)
-class App extends Component {
+export default class App extends Component {
   state = {
     number: 1,
   };
@@ -19,27 +13,28 @@ class App extends Component {
   };
   increment = () => {
     const { number } = this.state;
-    this.props.increment(number);
+    const action = increment(number);
+    store.dispatch(action);
   };
   decrement = () => {
     const { number } = this.state;
-    this.props.decrement(number);
+    store.dispatch(decrement(number));
   };
   incrementIfOdd = () => {
-    const { count } = this.props;
+    const count = store.getState();
     if (count & 1) {
       const { number } = this.state;
-      this.props.increment(number);
+      store.dispatch(increment(number));
     }
   };
   incrementAsync = () => {
     setTimeout(() => {
       const { number } = this.state;
-      this.props.increment(number);
+      store.dispatch(increment(number));
     }, 1000);
   };
   render() {
-    const { count } = this.props;
+    const count = store.getState();
     return (
       <>
         <p>click {count} times</p>
@@ -56,4 +51,3 @@ class App extends Component {
     );
   }
 }
-export default App;

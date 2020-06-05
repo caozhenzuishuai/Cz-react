@@ -1,15 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { increment, decrement } from "./redux/actions";
 
-@connect(
-  (state) => ({
-    count: state,
-  }),
-  { increment, decrement }
-)
-class App extends Component {
+export default class App extends Component {
   state = {
+    count: 0,
     number: 1,
   };
   handleChange = (e) => {
@@ -18,28 +11,35 @@ class App extends Component {
     });
   };
   increment = () => {
-    const { number } = this.state;
-    this.props.increment(number);
+    const { count, number } = this.state;
+    this.setState({
+      count: count + number,
+    });
   };
   decrement = () => {
-    const { number } = this.state;
-    this.props.decrement(number);
+    const { count, number } = this.state;
+    this.setState({
+      count: count - number,
+    });
   };
   incrementIfOdd = () => {
-    const { count } = this.props;
+    const { count, number } = this.state;
     if (count & 1) {
-      const { number } = this.state;
-      this.props.increment(number);
+      this.setState({
+        count: count + number,
+      });
     }
   };
   incrementAsync = () => {
     setTimeout(() => {
-      const { number } = this.state;
-      this.props.increment(number);
+      const { count, number } = this.state;
+      this.setState({
+        count: count + number,
+      });
     }, 1000);
   };
   render() {
-    const { count } = this.props;
+    const { count } = this.state;
     return (
       <>
         <p>click {count} times</p>
@@ -56,4 +56,3 @@ class App extends Component {
     );
   }
 }
-export default App;
