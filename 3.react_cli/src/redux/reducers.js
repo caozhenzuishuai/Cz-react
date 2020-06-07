@@ -1,16 +1,21 @@
-import { INCREMENT, DECREMENT } from "./constants";
+import { combineReducers } from "redux";
+import { ADD_COMMENT, DEL_COMMENT } from "./contants";
+const initComments = [
+  { id: 1, name: "jack", content: "you jump i jump" },
+  { id: 2, name: "rose", content: "i donnot jump" },
+];
 
-const initCount = 0;
-
-function count(prevState = initCount, action) {
-  console.log(prevState, action);
+function comments(prevState = initComments, action) {
   switch (action.type) {
-    case INCREMENT:
-      return prevState + action.data;
-    case DECREMENT:
-      return prevState - action.data;
+    case ADD_COMMENT:
+      return [action.data, ...prevState];
+    case DEL_COMMENT:
+      return prevState.filter((comment) => comment.id !== action.data);
     default:
       return prevState;
   }
 }
-export default count;
+
+export default combineReducers({
+  comments,
+});

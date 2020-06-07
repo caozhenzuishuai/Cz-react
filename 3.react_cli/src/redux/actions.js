@@ -1,10 +1,11 @@
-import { INCREMENT, DECREMENT } from "./constants";
+import { ADD_COMMENT, DEL_COMMENT } from "./contants";
 
-export const increment = (number) => ({
-  type: INCREMENT,
-  data: number,
+export const addComment = (comment) => ({
+  type: ADD_COMMENT,
+  data: comment,
 });
-export const decrement = (number) => ({
-  type: DECREMENT,
-  data: number,
+
+export const delComment = (id) => ({
+  type: DEL_COMMENT,
+  data: id,
 });

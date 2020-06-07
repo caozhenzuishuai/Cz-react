@@ -1,59 +1,26 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { increment, decrement } from "./redux/actions";
 
-@connect(
-  (state) => ({
-    count: state,
-  }),
-  { increment, decrement }
-)
-class App extends Component {
-  state = {
-    number: 1,
-  };
-  handleChange = (e) => {
-    this.setState({
-      number: +e.target.value,
-    });
-  };
-  increment = () => {
-    const { number } = this.state;
-    this.props.increment(number);
-  };
-  decrement = () => {
-    const { number } = this.state;
-    this.props.decrement(number);
-  };
-  incrementIfOdd = () => {
-    const { count } = this.props;
-    if (count & 1) {
-      const { number } = this.state;
-      this.props.increment(number);
-    }
-  };
-  incrementAsync = () => {
-    setTimeout(() => {
-      const { number } = this.state;
-      this.props.increment(number);
-    }, 1000);
-  };
+import Add from "./pages/Add";
+import List from "./pages/List";
+
+export default class App extends Component {
   render() {
-    const { count } = this.props;
     return (
-      <>
-        <p>click {count} times</p>
-        <select onChange={this.handleChange}>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-        <button onClick={this.increment}>+</button>
-        <button onClick={this.decrement}>-</button>
-        <button onClick={this.incrementIfOdd}>increment if odd</button>
-        <button onClick={this.incrementAsync}>increment async</button>
-      </>
+      <div>
+        <header className="site-header jumbotron">
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12">
+                <h1>请发表对React的评论</h1>
+              </div>
+            </div>
+          </div>
+        </header>
+        <div className="container">
+          <Add />
+          <List />
+        </div>
+      </div>
     );
   }
 }
-export default App;
